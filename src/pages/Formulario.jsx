@@ -115,7 +115,7 @@ const AddParejaForm = () => {
       });
     } catch (error) {
       console.log(error);
-      toast.error('Hubo un error al agregar la pareja');
+      toast.error('Hubo un error al agregar el estudiante');
     }
   };
 

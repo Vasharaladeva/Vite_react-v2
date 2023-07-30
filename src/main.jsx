@@ -11,6 +11,8 @@ import { action as eliminarClienteAction } from './components/Cliente'
 import Formulario from './pages/Formulario' 
 import User from './pages/User'
 import EstudiantePerfil from './pages/EstudiantePerfil'
+import Inactivo from './pages/Inactivo'
+import ReporteInactivos from './pages/ReporteInactivos'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -44,9 +46,19 @@ const router = createBrowserRouter([
         path: '/estudiante/:id',
         element:<EstudiantePerfil/>,
         errorElement: <ErrorPage />
+      },
+      {
+        path: '/inactivo',
+        element:<Inactivo/>,
+        errorElement: <ErrorPage />
       }
     ]
   },
+  {
+    path: '/reporteinactivos',
+    element:<ReporteInactivos/>,
+    errorElement: <ErrorPage />
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

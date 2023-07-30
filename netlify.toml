@@ -1,13 +1,13 @@
 [[redirects]]
-from = "/scannerQr"
+from = "/clientes/nuevo"
 to = "/estudiante/:id"
 status = 200
 force = true
 
 [[redirects]]
-  from = "/scannerQr"
+  from = "/clientes/nuevo"
   to = "/estudiante/:id"
   status = 302
 
 [build]
-  publish = "upload"
+  publish = "public"

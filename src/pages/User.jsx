@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 const User = () => {
   const [estudiantes, setEstudiantes] = useState([]);
   const [estudiantesCount, setEstudiantesCount] = useState(0);
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     axios.get(`https://rest-server-v2.onrender.com/estudiante`)
@@ -19,6 +20,15 @@ const User = () => {
         console.log('Error al obtener usuarios inactivos:', error);
       });
   }, []);
+
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const filteredEstudiantes = estudiantes.filter((person) => {
+    const fullName = `${person.nombre} ${person.apellido}`.toLowerCase();
+    return fullName.includes(searchValue.toLowerCase());
+  });
 
   return (
     <Disclosure as="header" className="bg-white shadow">
@@ -48,8 +58,10 @@ const User = () => {
                       id="search"
                       name="search"
                       className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:border-indigo-500 focus:text-gray-900 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="Search"
+                      placeholder="Buscar"
                       type="search"
+                      value={searchValue}
+                      onChange={handleSearchChange}
                     />
                   </div>
                 </div>
@@ -96,7 +108,7 @@ const User = () => {
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-gray-200 bg-white">
-                            {estudiantes.map((person) => (
+                            {filteredEstudiantes.map((person) => (
                               <tr key={person.email}>
                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                   <div className="flex items-center">
